@@ -61,7 +61,7 @@ var _eval = require('eval')
 function validate(projectName) {
     var files = [];
     try {
-        files = fs.readdirSync('./assets/' + projectName);
+        files = fs.readdirSync('..'+DropBoxpath+ projectName);
         if (files.indexOf(projectName + '.aepx') == -1) {
             throw "project file aepx not found!";
         }
@@ -74,7 +74,7 @@ function validate(projectName) {
         }
 
 
-        var vv = fs.readFileSync('./assets/' + projectName + '/report1.js');
+        var vv = fs.readFileSync('..'+DropBoxpath + projectName + '/report1.js');
         vv = (vv + '').replace('\\', '/')
         var res = _eval(vv + 'exports.data=jsonData');
         var li = [];
@@ -148,7 +148,7 @@ function validate(projectName) {
 
 
 function writeHelprtFile(obj,projectName){
-  var fileName= './assets/' + projectName+'/helper.json';
+  var fileName= '..'+DropBoxpath+ projectName+'/helper.json';
 
   fs.writeFile(fileName, JSON.stringify(obj), function(err) {
     if(err) {
